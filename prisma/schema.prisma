@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Character {
+  id          String          @id @default(cuid())
+  image       String
+  name        String
+  status      CharacterStatus @default(UNKNOWN)
+  gender      CharacterGender @default(UNKNOWN)
+  description String
+
+  @@index([status])
+  @@index([gender])
+  @@index([name])
+}
+
+enum CharacterStatus {
+  ALIVE
+  DEAD
+  UNKNOWN
+}
+
+enum CharacterGender {
+  MALE
+  FEMALE
+  UNKNOWN
+}
