@@ -14,6 +14,7 @@ Character Management GraphQL API built with NestJS, Prisma, and PostgreSQL.
 npm install
 copy .env.example .env
 docker compose up -d
+npm run prisma:generate
 npm run prisma:migrate
 npm run prisma:seed
 npm run start:dev
@@ -23,6 +24,19 @@ GraphQL runs at:
 
 ```text
 http://localhost:4000/graphql
+```
+
+Health check:
+
+```text
+GET http://localhost:4000/health
+```
+
+## Docker build
+
+```bash
+docker build -t case-be .
+docker run -p 4000:4000 --env-file .env case-be
 ```
 
 ## Useful scripts
