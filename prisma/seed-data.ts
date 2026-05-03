@@ -1,4 +1,25 @@
-import { CharacterGender, CharacterStatus, Prisma } from '@prisma/client';
+import { CharacterGender, CharacterStatus, Prisma, UserRole } from '@prisma/client';
+
+// ─── User Seed Data ──────────────────────────────────────────
+
+export const userSeedData: (Prisma.UserCreateInput & { id: string })[] = [
+  {
+    id: 'user_admin',
+    email: 'admin@example.com',
+    password: 'admin123',   // Will be hashed during seeding
+    name: 'Admin User',
+    role: UserRole.ADMIN,
+  },
+  {
+    id: 'user_test',
+    email: 'user@example.com',
+    password: 'user1234',   // Will be hashed during seeding
+    name: 'Test User',
+    role: UserRole.USER,
+  },
+];
+
+// ─── Character Seed Data ─────────────────────────────────────
 
 export const characterSeedData: Prisma.CharacterCreateInput[] = [
   {
